@@ -1,0 +1,54 @@
+package com.mycompany.menu;
+
+import java.io.File;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Pilha {
+
+    public Pilha() {
+          Stack<Regpro> pilha = new Stack();
+       String caminhoArquivo = "C:\\Users\\Miétje\\Downloads\\Produto.txt";
+        int codigo=0;
+        String nome;
+        String valors;
+        double valor=0;
+        int qtd =0;
+        int categoria = 0;
+        double total=0;
+        int qtd1 = 0;
+        try {
+            File arquivo = new File(caminhoArquivo);
+            Scanner leitor = new Scanner(arquivo);
+            Scanner leia = new Scanner(System.in);
+            while(leitor.hasNextLine()){
+                String linha = leitor.nextLine();
+                codigo = Integer.parseInt(linha.substring(0,2));
+                nome = linha.substring(3,34);
+                valors=linha.substring(36,41);
+                valor=Double.parseDouble(valors);
+                valor = valor/100;
+                qtd = Integer.parseInt(linha.substring(43,45));
+                categoria = Integer.parseInt(linha.substring(46,47));
+                
+                Regpro reg = new Regpro(codigo,nome,valor,qtd);
+                pilha.push(reg);
+                
+            }
+        } catch (Exception e) {
+            System.out.println("arquivo n encontrado");
+        }
+        for(Regpro item : pilha){
+            System.out.println(item.getDescricao());
+        }
+        for(int i = 0;i<5;i++){
+            pilha.pop();
+            
+        }
+        System.out.println("");
+        for(Regpro item : pilha){
+            System.out.println(item.getDescricao());
+        }
+    }
+    
+}
