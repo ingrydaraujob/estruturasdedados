@@ -1,0 +1,42 @@
+public class Fila {
+
+    public Fila() {
+        Queue<Regpro> fila = new LinkedList();
+        String caminhoArquivo = "C:\\Users\\Miétje\\Downloads\\Produto.txt";
+        int codigo=0;
+        String nome;
+        String valors;
+        double valor=0;
+        int qtd =0;
+        int categoria = 0;
+        double total=0;
+        int qtd1 = 0;
+        try {
+            File arquivo = new File(caminhoArquivo);
+            Scanner leitor = new Scanner(arquivo);
+            Scanner leia = new Scanner(System.in);
+            while(leitor.hasNextLine()){
+                String linha = leitor.nextLine();
+                codigo = Integer.parseInt(linha.substring(0,2));
+                nome = linha.substring(3,34);
+                valors=linha.substring(36,41);
+                valor=Double.parseDouble(valors);
+                valor = valor/100;
+                qtd = Integer.parseInt(linha.substring(43,45));
+                categoria = Integer.parseInt(linha.substring(46,47));
+                
+                Regpro re = new Regpro(codigo,nome,valor,qtd);
+                fila.add(re);
+            }
+        } catch (Exception e) {
+            System.out.println("arquivo n encontrado");
+        }
+        for(int i=0;i<5;i++){
+            fila.poll();
+        }
+        for (Regpro r : fila){
+            System.out.println(r);
+        }
+    }
+    
+}
