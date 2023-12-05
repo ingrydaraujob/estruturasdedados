@@ -1,0 +1,39 @@
+package com.mycompany.menu;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Miétje
+ */
+public class Menu {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int opcao=0;
+       do{
+           System.out.println("### MENU ###");
+           System.out.println("1. Chamar lista");
+           System.out.println("2. chamar fila");
+           System.out.println("3. chamar pilha");
+           System.out.println("0. Sair");
+           opcao = scanner.nextInt();
+           switch(opcao){
+               case 1:
+                   Lista lista = new Lista();
+                   break;
+               case 2:
+                   Fila fila = new Fila();
+                   break;
+               case 3:
+                   Pilha pilha = new Pilha();
+                   break;
+               case 0:
+                   break;
+               default:
+                   System.out.println("opção invalida");
+                   break;
+           }
+       }while(opcao!=0);
+    }
+}
