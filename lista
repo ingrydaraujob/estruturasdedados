@@ -1,0 +1,49 @@
+package com.mycompany.menu;
+
+import com.mycompany.fila.Regpro;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Miétje
+ */
+public class Lista {
+
+    public Lista() {
+        ArrayList<Regpro> lista = new ArrayList<>();
+        String caminhoArquivo = "C:\\Users\\Miétje\\Downloads\\Produto.txt";
+        int codigo=0;
+        String nome;
+        String valors;
+        double valor=0;
+        int qtd =0;
+        int categoria = 0;
+        double total=0;
+        int qtd1 = 0;
+        try {
+            File arquivo = new File(caminhoArquivo);
+            Scanner leitor = new Scanner(arquivo);
+            Scanner leia = new Scanner(System.in);
+            while(leitor.hasNextLine()){
+                String linha = leitor.nextLine();
+                codigo = Integer.parseInt(linha.substring(0,2));
+                nome = linha.substring(3,34);
+                valors=linha.substring(36,41);
+                valor=Double.parseDouble(valors);
+                valor = valor/100;
+                qtd = Integer.parseInt(linha.substring(43,45));
+                categoria = Integer.parseInt(linha.substring(46,47));
+                
+                Regpro re = new Regpro(codigo,nome,valor,qtd);
+                lista.add(re);
+            }
+        } catch (Exception e) {
+            System.out.println("arquivo n encontrado");
+        }
+        for (Regpro r : lista){
+            System.out.println(r.getDescricao());
+        }
+    }
+}
